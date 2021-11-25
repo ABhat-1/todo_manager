@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   #get "todos/create", to:"todos#create"
   #get "todos/:id", to: "todos#show"
   resources: todos
+  resources: users
+  post "users/login", to: "users#login"
+  get "users", to: "users#index"
 end
