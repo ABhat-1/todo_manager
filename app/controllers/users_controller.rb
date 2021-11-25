@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   skip_before_action: ensure_user_logged_in
-  name=params[:name]
-  email=params[:email]
-  password=params[:password]
-
+  
   def index
     render plain: Users.all.map{|user| user.to_pleasant_string}.join("\n")
 
   def create
+    name=params[:name]
+    email=params[:email]
+    password=params[:password]
     new_user=Users.create!(
       name: name,
       email: email,
