@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    user=Users.find_by_email(params[:email])
-    if user.present? && user.authenticate(params[:password])
+    user=Users.where("email = ? and password = ?", params[:email], params[:password])
+    if user.present? 
       render plain: "True"
     else
       render plain: "False"
