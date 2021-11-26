@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   skip_before_action: ensure_user_logged_in
   
   def index
-    render plain: Users.all.map{|user| user.to_pleasant_string}.join("\n")
+    render plain: User.all.map{|user| user.to_pleasant_string}.join("\n")
 
   def create
     name=params[:name]
     email=params[:email]
     password=params[:password]
-    new_user=Users.create!(
+    new_user=User.create!(
       name: name,
       email: email,
       password: password
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    user=Users.where("email = ? and password = ?", params[:email], params[:password])
+    user=User.where("email = ? and password = ?", params[:email], params[:password])
     if user.present? 
       render plain: "True"
     else
