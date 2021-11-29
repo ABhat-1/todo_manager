@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     render plain: User.all.map { |user| user.to_pleasant_string }.
-    join("\n")
+             join("\n")
   end
 
   def create
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     new_user = User.create!(
       name: name,
       email: email,
-      password: password
+      password: password,
     )
     response_text = "Hey, your new user is created with the id #{new_user.id}"
     render plain: response_text
@@ -25,5 +25,4 @@ class UsersController < ApplicationController
     user = User.find_by(email: email, password: password)
     render plain: user.present?
   end
-
 end
